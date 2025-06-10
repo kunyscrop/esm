@@ -1,0 +1,45 @@
+body{
+    font-family: sans-serif;
+  background: #d900ff6d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.cube-main{
+    background: rgba(147, 136, 177, 0.304);
+  border: 2px solid rgb(255, 255, 255);
+  width: 350px;
+  padding: 50px;
+  box-sizing: border-box;  
+}
+h1{
+    color: blue;
+}
+.esm{
+      border: 2px solid ;
+        margin: 2px;
+        width: 200px;
+}
+
+#kuny{
+    width: 200px;
+    background-color: #fff;
+}
+@media (max-width: 600px){
+    .cube-main{
+        border-radius: 40px;
+    }
+    #kuny{
+    width: 200px;
+    background-color: rgba(246, 246, 247, 0.701);
+    border-radius: 32px;}
+    .esm{
+        border: 2px solid ;
+        margin: 2px;
+        width: 200px;
+        border-radius: 32px;
+    }
+    }    
