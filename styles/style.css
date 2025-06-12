@@ -1,45 +1,83 @@
 body{
-    font-family: sans-serif;
-  background: #d900ff6d;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+    margin-top: 30px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
-.cube-main{
-    background: rgba(147, 136, 177, 0.304);
-  border: 2px solid rgb(255, 255, 255);
-  width: 350px;
-  padding: 50px;
-  box-sizing: border-box;  
+.kuny{
+    border: 2px solid black;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 23px;
 }
-h1{
-    color: blue;
-}
-.esm{
-      border: 2px solid ;
-        margin: 2px;
-        width: 200px;
+.kuny a{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    border: 1px solid black;
+    padding: 8px 20px;
+    border-radius: 15px;
+
 }
 
-#kuny{
-    width: 200px;
-    background-color: #fff;
+.kuny a:hover {
+    background-color: blue;
+    color: #fff;
+    font-weight: 400;
+    transition: 0.25s ease;
+    position: relative;
+    bottom: 1px;
 }
-@media (max-width: 600px){
-    .cube-main{
-        border-radius: 40px;
-    }
-    #kuny{
-    width: 200px;
-    background-color: rgba(246, 246, 247, 0.701);
-    border-radius: 32px;}
-    .esm{
-        border: 2px solid ;
-        margin: 2px;
-        width: 200px;
-        border-radius: 32px;
-    }
-    }    
+#top:hover{
+    background-color: rgba(0, 128, 0, 0.308);    
+}
+#top-1:hover{
+    background-color: rgba(255, 0, 0, 0.331);
+}
+.kuny button{
+    background-color: blue;
+}
+.top-1{
+    float: left;
+}
+.kuny input{
+    margin: 5px;
+}
+.list-button{
+    display: flex;
+    justify-content: space-around;
+}
+.list-button li{
+    list-style: none;
+}
+select{
+    padding: 5px 20px;
+    margin: 10px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    
+}
+.table{
+    margin-top: 30px;
+}
+.table ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.table ul li{
+    list-style-type: none;
+}
+.square{
+    border: 1px solid #000;
+    padding: 50px;
+}
+#List-view{
+    width: 300px;
+
+}
+.squareone{
+    position: relative;
+    right: 50px;
+    top: 32px;
+}

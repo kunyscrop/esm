@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des étudiants</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .container {
+      border: 2px solid black;
+      padding: 20px;
+      width: 500px;
+      text-align: center;
+    }
+
+    h2 {
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      text-align: left;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #999;
+      border-radius: 5px;
+    }
+
+    .options {
+      margin: 15px 0;
+      text-align: left;
+    }
+
+    .buttons {
+      margin-top: 15px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      margin: 5px;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .buttons button:hover {
+      background-color: #ddd;
+    }
+
+    .lists {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .lv-box {
+      width: 40%;
+      height: 150px;
+      border: 1px solid black;
+      overflow-y: auto;
+      font-size: 14px;
+      padding: 5px;
+      text-align: left;
+    }
+
+    .student-entry {
+      margin-bottom: 8px;
+      padding: 4px;
+      border: 1px dashed #aaa;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .student-entry.selected {
+      background-color: #d0f0ff;
+    }
+
+    .middle-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .middle-controls button {
+      margin: 5px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>gestion des etudiant</h2>
+
+  <label for="nom">Nom Etudiant</label>
+  <input id="nom" type="text">
+
+  <label for="postnom">Post Nom dsd</label>
+  <input id="postnom" type="text">
+
+  <label for="prenom">Prenom etd</label>
+  <input id="prenom" type="text">
+
+  <div class="options">
+    <strong>option</strong><br>
+    <input type="radio" name="option" value="Informatique"> Informatique
+    <input type="radio" name="option" value="SCOFI"> SCOFI
+    <input type="radio" name="option" value="ISTM"> ISTM
+  </div>
+
+  <label for="promotion">Promotion</label>
+  <select id="promotion">
+    <option>Choisir</option>
+    <option>L1</option>
+    <option>L2</option>
+    <option>L3</option>
+  </select>
+
+  <div class="buttons">
+    <button id="ajouter">Ajouter</button>
+    <button id="effacer">Effacer</button>
+  </div>
+
+  <div class="lists">
+    <div class="lv-box" id="lv-left"></div>
+
+    <div class="middle-controls">
+      <button id="sup">SUP</button>
+      <button id="transfer">></button>
+    </div>
+
+    <div class="lv-box" id="lv-right"></div>
+  </div>
+</div>
+
+<script>
+let selectedEntry = null;
+
+function createEntry(text) {
+  const entry = document.createElement("div");
+  entry.className = "student-entry";
+  entry.innerText = text;
+
+  entry.addEventListener("click", function () {
+    const entries = document.querySelectorAll(".student-entry");
+    entries.forEach(e => e.classList.remove("selected"));
+    entry.classList.add("selected");
+    selectedEntry = entry;
+  });
+
+  return entry;
+}
+
+document.getElementById("ajouter").addEventListener("click", function () {
+  const nom = document.getElementById("nom").value.trim();
+  const postnom = document.getElementById("postnom").value.trim();
+  const prenom = document.getElementById("prenom").value.trim();
+  const option = document.querySelector('input[name="option"]:checked')?.value || "Aucune";
+  const promotion = document.getElementById("promotion").value;
+
+  if (nom === "" || postnom === "" || prenom === "" || promotion === "Choisir") {
+    alert("Veuillez remplir tous les champs et choisir une promotion.");
+    return;
+  }
+
+  const text = `Nom: ${nom}, Postnom: ${postnom}, Prénom: ${prenom}, Option: ${option}, Promotion: ${promotion}`;
+  const entry = createEntry(text);
+
+  document.getElementById("lv-left").appendChild(entry);
+  selectedEntry = null;
+});
+
+document.getElementById("effacer").addEventListener("click", function () {
+  document.getElementById("nom").value = "";
+  document.getElementById("postnom").value = "";
+  document.getElementById("prenom").value = "";
+  document.getElementById("promotion").selectedIndex = 0;
+
+  document.querySelectorAll('input[name="option"]').forEach(r => r.checked = false);
+  selectedEntry = null;
+});
+
+document.getElementById("sup").addEventListener("click", function () {
+  if (selectedEntry && selectedEntry.parentElement.id === "lv-left") {
+    selectedEntry.remove();
+    selectedEntry = null;
+  } else {
+    alert("Sélectionne une entrée dans la liste de gauche à supprimer.");
+  }
+});
+
+document.getElementById("transfer").addEventListener("click", function () {
+  if (selectedEntry && selectedEntry.parentElement.id === "lv-left") {
+    document.getElementById("lv-right").appendChild(selectedEntry);
+    selectedEntry.classList.remove("selected");
+    selectedEntry = null;
+  } else {
+    alert("Sélectionne une entrée à transférer.");
+  }
+});
+</script>
+
+</body>
+</html>
